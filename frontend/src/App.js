@@ -2,6 +2,9 @@ import "./App.css"
 import { useState } from "react";
 import SubmitForm from "./components/SubmitForm";
 import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { Redirect } from "react-router";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login"
 
 function App() {
 
@@ -9,15 +12,21 @@ function App() {
 
   const [fileName, setFileName] = useState("");
 
+  const checkIfLoggedIn = () => {
+    let loggedIn = false
+
+    //Add login Logic
+
+    return loggedIn
+  }
+
 
   return (
     <Router>
       <div className="App">
-        <Route path="/"  exact render={(props) => (
-          <>
-            <SubmitForm/>
-          </>
-        )}/>
+        <Route path="/"  exact render={(props) => checkIfLoggedIn() == true ? 
+        <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
+        <Route path="/login" component={Login}/>
       </div>
     </Router>
   );
