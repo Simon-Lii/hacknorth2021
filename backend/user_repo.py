@@ -32,4 +32,5 @@ class UserRepo:
 
     # data = json object
     def update_info(self, id, data):
+        print('ran')
         return self.db.update(id, data)

@@ -19,7 +19,7 @@ class repo:
             return None
 
     def update(self, id, data):
-        resp = self.db.collection.update_one({"_id": ObjectId(id)}, {"$set": data})
+        resp = self.db.update_one({"_id": ObjectId(id)}, {"$set": data})
         return self.read(id)
 
     def delete_entry(self, field, value):
