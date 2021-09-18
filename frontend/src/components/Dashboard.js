@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import SubmitForm from './SubmitForm'
+import "../styles/dashboard.css"
 
 
 const Dashboard = () => {
@@ -17,10 +18,26 @@ const Dashboard = () => {
 		.catch((result) => console.log(result))
 		setFileUploaded(0);
 	}
+
+	
 	
 
 	return (
-			fileUploaded ? <p>Uploaded</p> : <SubmitForm handleSubmit={handleSubmit} setFile={setFile}/>
+		<div id="dashboard-container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">Navbar</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<button class="btn btn-outline-primary">Sign Out</button>
+				</div>
+			</nav>
+			<div id="upload-container" className="card">
+				<SubmitForm handleSubmit={handleSubmit} setFile={setFile}/>
+				{fileUploaded ? <p>file.name</p> : <p></p>}
+			</div>
+		</div>
 	)
 }
 

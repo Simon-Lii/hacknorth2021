@@ -34,14 +34,14 @@ function App() {
     return false
   }
 
-
+  //TODO Login route needs logged in checking, add at the end when when we want to test our app
   return (
     <Router>
       <div className="App">
         <Route path="/" exact component={Landing}/>
         <Route path="/dashboard" exact render={(props) => checkIfLoggedIn() === false ? 
         <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
-        <Route path="/login" render={(props) => (<Login loginRequest={requestLogin}/>)} />
+        <Route path="/login" render={(props) => (<Login loginRequest={requestLogin}/>)} /> 
       </div>
     </Router>
   );
