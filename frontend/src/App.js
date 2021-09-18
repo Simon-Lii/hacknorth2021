@@ -1,16 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from "./components/Button.js"
-import FileUpload from './components/FileUpload';
+import "./App.css"
+import { useState } from "react";
+import SubmitForm from "./components/SubmitForm";
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { Redirect } from "react-router";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login"
 
 function App() {
+
+  const [fileUploaded, setFileUploaded] = useState(0);
+
+  const [fileName, setFileName] = useState("");
+
+  const checkIfLoggedIn = () => {
+    let loggedIn = false
+
+    //Add login Logic
+
+    return loggedIn
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <FileUpload/>
-        <Button/>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Route path="/"  exact render={(props) => checkIfLoggedIn() == true ? 
+        <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
+        <Route path="/login" component={Login}/>
+      </div>
+    </Router>
   );
 }
 
