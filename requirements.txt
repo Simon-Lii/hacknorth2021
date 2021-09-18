@@ -6,3 +6,4 @@ librosa
 IPython
 numpy
 subprocess
+jwt
