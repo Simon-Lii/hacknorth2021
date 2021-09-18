@@ -7,12 +7,16 @@ const Login = ({loginRequest}) => {
 	
 	const handleLogin = (event) => {
 		event.preventDefault()
-		const result = loginRequest(event.target[0].value, event.target[1].value)
-			if(result.status != "success"){
+		loginRequest(event.target[0].value, event.target[1].value)
+		.then(result => {if(result !== 200){
 			const loginErrorMsgBox = document.getElementById("loginError")
 			loginErrorMsgBox.textContent = "Username and Password not detected. Please try again or make a new account"
 			loginErrorMsgBox.removeAttribute("hidden")
 		}
+		else {
+			window.location.replace("http://localhost:3000/dashboard")
+		}})
+		
 	}
 
 	return (

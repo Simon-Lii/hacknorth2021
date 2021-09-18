@@ -10,10 +10,7 @@ app = Flask("app")
 if not os.path.exists('../uploads'):
     os.makedirs("../uploads")
 
-
-# @app.route("/api/access")
-
-@app.route("/api/delete_user", methods=["POST"])
+@app.route("/api/delete_user/", methods=["POST"])
 def delete_user():
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
@@ -26,8 +23,8 @@ def delete_user():
         return {"status": "bad request"}, 400
 
 
-@app.route("/api/create_user", methods=["POST"])
-def create_user():
+@app.route("/api/create_user/", methods=["POST"])
+def make_user():
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
         if db_user.check_user(username):
@@ -51,7 +48,6 @@ def auth_check():
 
 @app.route("/api/login/", methods=["POST"])
 def login():
-
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
         auth_val = db_user.authenticate(username, password)
