@@ -9,3 +9,7 @@ class repo:
     def read(self, id):
         resp = self.db.find_one({"_id": ObjectId(id)})
         return resp
+
+    def get_entry(self, field, value):
+        resp = self.db.find_one({field: value})
+        return resp
