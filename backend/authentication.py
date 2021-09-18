@@ -3,11 +3,13 @@ from typing import Tuple, Union
 
 auth_secret = "my_secret"
 
+
 def get_token(userid: str) -> str:  # should I use custom exceptions here?
     generated_token = jwt.encode(
         {"userid": str(userid)}, auth_secret, algorithm="HS256"
     )
     return generated_token
+
 
 def verify_data(
     encoded_secret: str,

@@ -4,13 +4,12 @@ from flask import Flask, make_response, request, jsonify
 import authentication
 
 db_user = UserRepo()
-print(db_user.authenticate("admin","ADMIN"))
+print(db_user.authenticate("admin", "ADMIN"))
 
 app = Flask("app")
 
 
 # @app.route("/api/access")
-
 
 
 @app.route("/api/create_user")
@@ -55,4 +54,5 @@ def login():
 @app.route("/api/upload", methods=["POST"])
 # not sure what to do with the files yet xD
 def upload_api():
+    pass
     # if 'file' not in request.files:

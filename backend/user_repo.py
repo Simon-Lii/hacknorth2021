@@ -1,9 +1,10 @@
 from database import repo
 
+
 class UserRepo:
     def __init__(self):
         self.db = repo("user")
-    
+
     def authenticate(self, username, password):
         entry = self.db.get_entry("username", username)
         if entry != None:
@@ -28,5 +29,3 @@ class UserRepo:
     # data = json object
     def update_info(self, id, data):
         return self.db.update(id, data)
-
-
