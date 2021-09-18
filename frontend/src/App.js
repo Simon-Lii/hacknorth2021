@@ -8,10 +8,6 @@ import Login from "./components/Login"
 
 function App() {
 
-  const [fileUploaded, setFileUploaded] = useState(0);
-
-  const [fileName, setFileName] = useState("");
-
   const checkIfLoggedIn = () => {
     let loggedIn = false
 
@@ -24,7 +20,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route path="/"  exact render={(props) => checkIfLoggedIn() == false ? 
+        <Route path="/" exact render={(props) => checkIfLoggedIn() === false ? 
         <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
         <Route path="/login" component={Login}/>
       </div>

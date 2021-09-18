@@ -1,12 +1,14 @@
 from . import authentication
 from .user_repo import UserRepo
 import os
+from werkzeug.utils import secure_filename
 from flask import Flask, make_response, request, jsonify
 import uuid
 
 db_user = UserRepo()
 app = Flask("app")
-os.makedirs("../uploads", exists_ok=True)
+if not os.path.exists('../uploads'):
+    os.makedirs("../uploads")
 
 
 # @app.route("/api/access")
@@ -65,8 +67,9 @@ def login():
 
 @app.route("/api/upload", methods=["POST"])
 def upload_api():
-    if request.files:
-        saved_file = request.files["upload"]
-        saved_file.save(os.path.join("../uploads", uuid.uuid4().hex))
+    print(request.files)
+    if "file" in request.files:
+        saved_file = request.files["file"]
+        saved_file.save(os.path.join("../uploads", secure_filename(saved_file.filename)))
         return {"status": "success"}, 200
     return {"status": "bad request"}, 400
