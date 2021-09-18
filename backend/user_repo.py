@@ -7,6 +7,6 @@ class UserRepo:
         entry = self.db.get_entry("username", username)
         if entry != None:
             if entry["username"] == username and entry["password"] == password:
-                return True
+                return entry
         return False
         
