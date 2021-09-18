@@ -1,10 +1,11 @@
 from database import repo
+from user_repo import UserRepo
 from flask import Flask
 from flask import request
 import authentication
 
-db_user = repo("user_db")
-mongo_id = "614555ee4118c7e524b4948b"
+db_user = UserRepo()
+print(db_user.authenticate("admin","ADMIN"))
 
 app = Flask("app")
 

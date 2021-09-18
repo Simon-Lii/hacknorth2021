@@ -9,3 +9,20 @@ class repo:
     def read(self, id):
         resp = self.db.find_one({"_id": ObjectId(id)})
         return resp
+    
+    def create(self, data):
+        resp = self.db.insert_one(data)      
+        if resp.inserted_id:
+            return self.read(resp.inserted_id)
+        else:
+            return None
+    
+    def update(self, id, data):
+        resp = self.collection.update_one({"_id": ObjectId(id)}, {
+            "$set": data
+        })
+        return self.read(id)
+
+    def get_entry(self, field, value):
+        resp = self.db.find_one({field: value})
+        return resp
