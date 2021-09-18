@@ -12,14 +12,21 @@ class UserRepo:
         return False
 
     def read_user(self, id):
-        return self.read(id)
+        return self.db.read(id)
+
+    def check_user(self, new_username):
+        """
+        Returns true iff this user does not exist in the database already.
+        """
+        return not bool(self.db.get_entry("username", new_username))
 
     # data = json object
     # default values: {"username":"yourstring", "password":"yourstring"}
-    def create_user(self, data):
-        return self.create(data)
+    def create_user(self, username, password):
+        return self.db.create({"username": username, "password": password})
 
     # data = json object
     def update_info(self, id, data):
         return self.db.update(id, data)
-        
+
+
