@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route path="/"  exact render={(props) => checkIfLoggedIn() == true ? 
+        <Route path="/"  exact render={(props) => checkIfLoggedIn() == false ? 
         <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
         <Route path="/login" component={Login}/>
       </div>
