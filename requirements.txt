@@ -6,4 +6,4 @@ librosa
 IPython
 numpy
 aubio
-jwt
+pyjwt

@@ -10,10 +10,7 @@ app = Flask("app")
 if not os.path.exists('../uploads'):
     os.makedirs("../uploads")
 
-
-# @app.route("/api/access")
-
-@app.route("/api/delete_user", methods=["POST"])
+@app.route("/api/delete_user/", methods=["POST"])
 def delete_user():
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
@@ -26,8 +23,8 @@ def delete_user():
         return {"status": "bad request"}, 400
 
 
-@app.route("/api/create_user", methods=["POST"])
-def create_user():
+@app.route("/api/create_user/", methods=["POST"])
+def make_user():
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
         if db_user.check_user(username):
@@ -62,7 +59,7 @@ def login():
         else:
             return {"status": "invalid user"}, 401
     else:
-        return {"response", "bad request"}, 400
+        return {"response": "bad request"}, 400
 
 
 @app.route("/api/upload", methods=["POST"])
@@ -73,3 +70,6 @@ def upload_api():
         saved_file.save(os.path.join("../uploads", secure_filename(saved_file.filename)))
         return {"status": "success"}, 200
     return {"status": "bad request"}, 400
+
+
+print(db_user.update_info("614584114118c7e524b49493", {"dick": "cock"}))

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import SubmitForm from './SubmitForm'
+import "../styles/dashboard.css"
 
 
 const Dashboard = () => {
@@ -15,12 +16,31 @@ const Dashboard = () => {
 		axios.post('http://localhost:3000/api/upload', data)
 		.then((result) => console.log(result))
 		.catch((result) => console.log(result))
-		setFileUploaded(1);
+		setFileUploaded(0);
+	}
+
+	const signOut = async (e) => {
+		e.preventDefault();
+		const data = new FormData();
+		//TODO finish once api is done
 	}
 	
 
 	return (
-			fileUploaded ? <p>Uploaded</p> : <SubmitForm handleSubmit={handleSubmit} setFile={setFile}/>
+		<div id="dashboard-container" >
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">Score.me</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<button class="btn btn-outline-primary">Sign Out</button>
+				</div>
+			</nav>
+			<div id="upload-container" className="card">
+				<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
+			</div>
+		</div>
 	)
 }
 
