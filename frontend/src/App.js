@@ -27,11 +27,8 @@ function App() {
     data.append('username', username);
     data.append('password', password);
     let result = await axios.post("http://localhost:3000/api/login/", data)
-    console.log(result)
-    if (result.status === "success"){
-      return true
-    }
-    return false
+    .then((result) => {return result})
+    .catch((result) => { return result })
   }
 
   //TODO Login route needs logged in checking, add at the end when when we want to test our app

@@ -74,3 +74,6 @@ def upload_api():
         saved_file.save(os.path.join("../uploads", secure_filename(saved_file.filename)))
         return {"status": "success"}, 200
     return {"status": "bad request"}, 400
+
+
+print(db_user.update_info("614584114118c7e524b49493", {"dick": "cock"}))

@@ -8,7 +8,7 @@ const Login = ({loginRequest}) => {
 	const handleLogin = (event) => {
 		event.preventDefault()
 		const result = loginRequest(event.target[0].value, event.target[1].value)
-		if(!result){
+			if(result.status != "success"){
 			const loginErrorMsgBox = document.getElementById("loginError")
 			loginErrorMsgBox.textContent = "Username and Password not detected. Please try again or make a new account"
 			loginErrorMsgBox.removeAttribute("hidden")
