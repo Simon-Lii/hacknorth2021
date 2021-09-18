@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { Redirect } from "react-router";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login"
+import Landing from "./components/Landing"
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route path="/" exact render={(props) => checkIfLoggedIn() === false ? 
+        <Route path="/" component={Landing}/>
+        <Route path="/dashboard" exact render={(props) => checkIfLoggedIn() === false ? 
         <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
         <Route path="/login" component={Login}/>
       </div>
