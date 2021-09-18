@@ -1,9 +1,9 @@
 import abjad
 from audio_transcription.audio_transcript import AudioTranscripter
 
-at = AudioTranscripter('piano.wav')
-print(at)
-
+at = AudioTranscripter('twinkle2.wav')
+x = at.convert()
+print(x)
 # string = "c'16 f' g' a' d' g' a' b' e' a' b' c'' f' b' c'' d''16"
 # voice_1 = abjad.Voice(string, name="Voice_1")
 # staff_1 = abjad.Staff([voice_1], name="Staff_1")
@@ -188,20 +188,20 @@ freq_chart = {'16.35': 'C0', '17.32': 'C#0', '18.35': 'D0', '19.45': 'D#0', '20.
 #     return music_str
 
 def build_str(ori_notes):
-    tempo = ori_notes[1]
+    tempo = float(ori_notes[1])
     quarter = 1/(tempo/60)
     range_of_notes = [quarter/4, quarter/2, quarter, quarter*2, quarter*4]
     notes = ori_notes[2]
     music_str = ""
+    beat_num = 0
     for i in range(len(notes)):
         octave_str = ''
         note = notes[i][1][:-1].lower()
         octave = int(notes[i][1][-1])
-        time = notes[i][0]
+        time = float(notes[i][0])
         time_str = ''
-        if i == len(notes):
-            num_notes = len(notes) - 1
-            num = num_notes % 4
+        if i == len(notes) - 1:
+            num = beat_num % 4
             if num == 0:
                 time_str = '1'
             elif num == 1:
@@ -211,15 +211,16 @@ def build_str(ori_notes):
             else:
                 time_str = '4'
         else:
-            next_note_time = notes[i+1][0]
+            next_note_time = float(notes[i+1][0])
             duration = next_note_time - time
             duration_diff = abs(range_of_notes[0] - duration)
             time_str = '16'
             for j in range(1, len(range_of_notes)):
                 if abs(range_of_notes[j] - duration) < duration_diff:
                     duration_diff = abs(range_of_notes[j] - duration)
-                    note_length = 2**(abs(4-i))
+                    note_length = 2**(abs(4-j))
                     time_str = str(note_length)
+            beat_num += 4 / float(time_str)
         if '#' in note:
             note = note.replace('#', 's')
         if '♭' in note:
@@ -231,15 +232,18 @@ def build_str(ori_notes):
             octave_str += "'"
         note_str = note
         music_str += note_str + octave_str + time_str + " "
-
+    print(beat_num)
     return music_str[:-1]
 
 
 def output_score(music_str, tempo):
     staff = abjad.Staff(music_str)
     score = abjad.Score([staff])
+    mark = abjad.MetronomeMark((1, 4), tempo)
+    abjad.attach(mark, staff[0])
     barline = abjad.deprecated.add_final_bar_line(score)
     abjad.show(score)
+
 
 
 # staff_1 = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
