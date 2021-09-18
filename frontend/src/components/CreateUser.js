@@ -21,7 +21,7 @@ const CreateUser = ({ createUserRequest }) => {
   return (
     <div id="createUser">
       <div id="background"></div>
-      <div className="card">
+      <div className="card login-box">
         <form onSubmit={handleCreateUser}>
           <div class="mb-2">
             <label for="username" class="form-label">

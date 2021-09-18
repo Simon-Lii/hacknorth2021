@@ -1,5 +1,5 @@
-#login-box {
-	max-width: 34vw;
+.login-box {
+	max-width: 20vw;
 	min-height : 30vh;
 	margin-top: 0vh;
 	font-size: medium;
@@ -13,6 +13,7 @@
 	transform: translate(-50%, -50%);
 	z-index: 2;
 }
+
 
 #login{
 	display: flex;
