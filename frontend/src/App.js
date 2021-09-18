@@ -1,6 +1,7 @@
 import "./App.css"
 import { useState } from "react";
 import SubmitForm from "./components/SubmitForm";
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 function App() {
 
@@ -8,12 +9,17 @@ function App() {
 
   const [fileName, setFileName] = useState("");
 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <SubmitForm/>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Route path="/"  exact render={(props) => (
+          <>
+            <SubmitForm/>
+          </>
+        )}/>
+      </div>
+    </Router>
   );
 }
 
