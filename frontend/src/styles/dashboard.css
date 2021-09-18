@@ -18,3 +18,8 @@
 	flex-direction: column;
 	margin:1vw;
 }
+
+#upload-container #uploaded-file-name{
+	font-size: small;
+	color:grey;
+}

@@ -19,7 +19,11 @@ const Dashboard = () => {
 		setFileUploaded(0);
 	}
 
-	
+	const signOut = async (e) => {
+		e.preventDefault();
+		const data = new FormData();
+		//TODO finish once api is done
+	}
 	
 
 	return (
@@ -34,8 +38,7 @@ const Dashboard = () => {
 				</div>
 			</nav>
 			<div id="upload-container" className="card">
-				<SubmitForm handleSubmit={handleSubmit} setFile={setFile}/>
-				{fileUploaded ? <p>file.name</p> : <p></p>}
+				<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 			</div>
 		</div>
 	)
