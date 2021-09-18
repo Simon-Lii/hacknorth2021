@@ -51,6 +51,7 @@ def auth_check():
 
 @app.route("/api/login/", methods=["POST"])
 def login():
+
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
         auth_val = db_user.authenticate(username, password)
@@ -62,7 +63,7 @@ def login():
         else:
             return {"status": "invalid user"}, 401
     else:
-        return {"response", "bad request"}, 400
+        return {"response": "bad request"}, 400
 
 
 @app.route("/api/upload", methods=["POST"])

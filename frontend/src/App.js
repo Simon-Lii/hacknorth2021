@@ -23,7 +23,9 @@ function App() {
   
 
   const requestLogin = async (username, password) => {
-    const data = JSON.stringify({username: username, password: password})
+    let data = new FormData();
+    data.append('username', username);
+    data.append('password', password);
     let result = await axios.post("http://localhost:3000/api/login/", data)
     console.log(result)
     if (result.status === "success"){
