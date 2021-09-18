@@ -1,18 +1,30 @@
-from database import repo
-from user_repo import UserRepo
+from . import authentication
+from .user_repo import UserRepo
+import os
 from flask import Flask, make_response, request, jsonify
-import authentication
+import uuid
 
 db_user = UserRepo()
-print(db_user.authenticate("admin", "ADMIN"))
-
 app = Flask("app")
+os.makedirs("../uploads", exists_ok=True)
 
 
 # @app.route("/api/access")
 
+@app.route("/api/delete_user", methods=["POST"])
+def delete_user():
+    if "username" in request.form and "password" in request.form:
+        username, password = request.form["username"], request.form["password"]
+        if db_user.authenticate(username, password):
+            db_user.delete_user(username)
+            return {"status": "success"}, 200
+        else:
+            return {"status": "unauthorized"}, 401
+    else:
+        return {"status": "bad request"}, 400
 
-@app.route("/api/create_user")
+
+@app.route("/api/create_user", methods=["POST"])
 def create_user():
     if "username" in request.form and "password" in request.form:
         username, password = request.form["username"], request.form["password"]
@@ -41,7 +53,7 @@ def login():
         username, password = request.form["username"], request.form["password"]
         auth_val = db_user.authenticate(username, password)
         if auth_val:
-            token_val = authentication.get_token(username)
+            token_val = authentication.get_token(auth_val)
             response = make_response(jsonify({"status": "success"}))
             response.set_cookie("token", token_val, httponly=True)
             return response
@@ -52,7 +64,9 @@ def login():
 
 
 @app.route("/api/upload", methods=["POST"])
-# not sure what to do with the files yet xD
 def upload_api():
-    pass
-    # if 'file' not in request.files:
+    if request.files:
+        saved_file = request.files["upload"]
+        saved_file.save(os.path.join("../uploads", uuid.uuid4().hex))
+        return {"status": "success"}, 200
+    return {"status": "bad request"}, 400

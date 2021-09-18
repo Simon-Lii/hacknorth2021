@@ -22,6 +22,10 @@ class repo:
         resp = self.db.collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         return self.read(id)
 
+    def delete_entry(self, field, value):
+        resp = self.db.delete_one({field: value})
+        return resp
+
     def get_entry(self, field, value):
         resp = self.db.find_one({field: value})
         return resp
