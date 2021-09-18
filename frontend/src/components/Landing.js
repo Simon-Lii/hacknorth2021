@@ -1,9 +1,10 @@
 import React from 'react'
+import "../styles/landing.css"
 
 const Landing = () => {
 	return (
 		<div>
-			Landing Page Here
+			<div id="landing-background"></div>
 		</div>
 	)
 }
