@@ -39,7 +39,7 @@ function App() {
     .catch(response => response.status)
   }
 
-
+  //TODO Login route needs logged in checking, add at the end when when we want to test our app
   return (
     <Router>
       <div className="App">

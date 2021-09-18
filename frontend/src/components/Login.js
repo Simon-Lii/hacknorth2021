@@ -23,7 +23,7 @@ const Login = ({loginRequest}) => {
 		<div id="login">
 			<div id="background">
 			</div>
-			<div className="card">
+			<div className="card" id="loginBox">
 				
 				<form onSubmit={handleLogin}>
 					<div class="mb-2">
