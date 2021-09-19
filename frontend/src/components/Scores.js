@@ -3,7 +3,7 @@ import Score from './Score'
 
 const Scores = ({scores}) => {
 	return (
-		<div>
+		<div id="scores">
 			{scores.map((score) => (
 				<Score score={score}/>
 			))}

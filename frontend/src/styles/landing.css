@@ -82,8 +82,8 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 	background-color: rgb(24, 24, 24);
 	min-width: 35vw;
 	min-height: 18vh;
-	top: 58%;
-	left: 60%;
+	top: 50vh;
+	left: 60vw;
 	z-index: 1;
 	position: absolute;	
 	border-color: grey;
@@ -91,18 +91,18 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
 #blocker-1{
 	background-color: rgb(148, 148, 148);
-	min-width: 35vw;
+	min-width: 29vw;
 	min-height: 2px;
-	top: 53.1%;
-	left: 60%;
+	top: 45vh;
+	left: 60vw;
 	z-index: 1;
 	position: absolute;	
 	border-color: grey;
 }
 
 #bonto{
-	top: 74%;
-	left: 87%;
+	top: 80vh;
+	left: 90vw;
 	z-index: 1;
 	position: absolute;	
 	border-color: grey;	
