@@ -46,26 +46,33 @@ const Dashboard = ({user}) => {
 
 	return (
 		<div id="dashboard-container" >
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
 				<div class="container-fluid">
 					<a class="navbar-brand " href="#"> &#127932; Score.me</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					</button>
+					<h3 id="header1"className="display-4 my-scores-title"> &#127925; My Scores </h3>
 					<button class="btn btn-outline-info" onClick={signOut}>Sign Out</button>
 				</div>
 			</nav>
 			<div id="main-content">
 				<div id="upload-container" className="card">
-					<h3 className="display-6 upload-title"> Upload </h3>
+					<h3 id = "upload1" className="display-6 upload-title"> Upload </h3>
 					<div className="alert alert-warning"> To get your music score, upload your .wav file by clicking upload and after
 					you finish uploading, press "Get my score".</div>
 					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 				</div>
-				<div id="history-container">
-					<h3 className="display-4 my-scores-title"> &#127925; My Scores </h3>
-					<hr></hr>
-					<Scores scores={scores}/>
+					<div id="history-container">
+						<hr id="hr1"></hr>
+						<div id="background-dash">
+						<Scores scores={scores} style={{backgroundColor:"blue"}}/>
+					</div></div>
+					<div id="upload-container" className="card">
+					<h3 id = "upload1" className="display-6 upload-title"> Upload </h3>
+					<div className="alert alert-warning"> To get your music score, upload your .wav file by clicking upload and after
+					you finish uploading, press "Get my score".</div>
+					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 				</div>
 			</div>
 		</div>

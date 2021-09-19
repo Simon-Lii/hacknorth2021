@@ -3,10 +3,11 @@ import "../styles/score.css"
 
 const Score = ({score}) => {
 	return (
-		<div className="card score">
+		<div className="card score" id="card1">
+			<div className="grow">
 			<div className="card-body">
-				<h3 className="score-title">{score.title}</h3>
-				<a className="score-link lead" href={score.url}>Download</a>
+				<a id = "title1" className="score-link lead" href={score.url}>{score.title}</a>
+			</div>
 			</div>
 		</div>
 	)

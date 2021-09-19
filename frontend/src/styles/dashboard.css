@@ -6,12 +6,16 @@
 
 #main-content{
 	flex: 1 1 auto;
-    display: flex;
+	display: flex;
+	background-image: url("../img/studio.jpg");
+	background-size: 88%;
+	background-repeat: no-repeat;
 }
 
 #history-container{
 	flex: auto;
-	padding: 20px;
+	padding: 40px;
+	margin-left: 100px
 }
 
 .upload-title{
@@ -21,8 +25,8 @@
 }
 
 hr{
-	margin-top: 5vh;
-	margin-bottom: 5vh;
+	margin-top: 2vh;
+	margin-bottom: 2vh;
 
 }
 
@@ -50,4 +54,15 @@ hr{
 
 #scores{
 	display:flex;
+}
+
+#header1{
+	padding-right: 140px;
+	padding-bottom: 10px;
+	color:white;
+	font-family: Copperplate
+}
+
+#hr1{
+	margin-right: 530px
 }
