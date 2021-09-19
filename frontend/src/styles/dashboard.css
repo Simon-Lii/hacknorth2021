@@ -46,3 +46,7 @@ hr{
 	font-size: small;
 	color:grey;
 }
+
+#scores{
+	display:flex;
+}

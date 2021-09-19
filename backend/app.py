@@ -13,18 +13,7 @@ if not os.path.exists('../uploads'):
     os.makedirs("../uploads")
 
 def retrieve_id(token):
-    string = authentication.verify_data(token)[1]
-    left = 0
-    right = 0
-    for c in range(len(string)):
-        if string[c] == "(":
-            left = c
-        elif string[c] == ")":
-            right = c
-            break
-
-    id = string[left+2:right-1]
-    return id
+    return authentication.verify_data(token)[1]
 
 
 @app.route("/api/delete_user/", methods=["POST"])
@@ -112,9 +101,7 @@ def get_history():
     history = entry["history"]
     resp = []
     for h in history:
-        data = music_trans.get_score_from_musical_data(h)
-        pdf_filename = data[1]
-        musical_data = data[2]
-        temp_resp = {"title":h[0] , "url" : bucket.generate_presigned_url(pdf_filename)}
+        pdf_filename = h[0].removesuffix('.wav') + ".pdf"
+        temp_resp = {"title": h[0].removesuffix('.wav'), "url" : bucket.generate_presigned_url(pdf_filename)}
         resp.append(temp_resp)
-    return {"body":resp}, 200
+    return {"body": resp}, 200

@@ -1,5 +1,11 @@
 .score{
 	margin: 10px;
+	max-width: 13vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
 }
 .score-title{
 	float: left;
@@ -8,6 +14,7 @@
 .score-link{
 	vertical-align: middle;
 	text-decoration: none;
+	float: right;
 }
 
 .score-link :hover{
