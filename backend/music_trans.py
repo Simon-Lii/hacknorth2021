@@ -130,7 +130,7 @@ def audio_to_score(filename):
     path = output_score(y, int(float(x[1])), x[0])
     with open(path, "rb") as file:
         bucket.upload_object(filename, file)
-    return y, filename
+    return y, filename, x
 
 # staff_1 = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 # clef_1 = abjad.Clef("treble")
