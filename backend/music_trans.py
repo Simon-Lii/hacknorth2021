@@ -49,8 +49,32 @@ freq_chart = {'16.35': 'C0', '17.32': 'C#0', '18.35': 'D0', '19.45': 'D#0', '20.
 #
 #     return music_str
 
-def build_str(ori_notes):
-    tempo = float(ori_notes[1])
+def find_bpm(ori_notes):
+    notes = ori_notes[2]
+    time_dict = {}
+    for i in range(len(notes) - 1):
+        time_diff = abs(float(notes[i][0]) - float(notes[i+1][0]))
+        if len(time_dict) == 0:
+            time_dict[time_diff] = 1
+        else:
+            for time in time_dict:
+                if abs(time_diff - time) < 0.1:
+                    time_dict[time] += 1
+                    break
+                else:
+                    time_dict[time_diff] = 1
+                    break
+
+    sorted_lst = sorted(time_dict.items(), key=lambda x: x[1])
+    mode = float(sorted_lst[-1][0])
+    print(sorted_lst)
+    print(mode)
+    bpm = int((1/mode) * 60)
+    return bpm
+
+
+def build_str(ori_notes, bpm):
+    tempo = bpm
     quarter = 1 / (tempo / 60)
     range_of_notes = [quarter / 4, quarter / 2, quarter, quarter * 2, quarter * 4]
     notes = ori_notes[2]
@@ -88,7 +112,7 @@ def build_str(ori_notes):
         if '♭' in note:
             note = note.replace('♭', 'f')
         if octave <= 2:
-            return 'Note out of range.'
+            octave = 3
         octave_diff = octave - 3
         for k in range(octave_diff):
             octave_str += "'"
@@ -124,10 +148,12 @@ def audio_to_score(filename):
     at = AudioTranscripter(filename)
     x = at.convert()
     print(x)
-    y = build_str(x)
+    bpm = find_bpm(x)
+    print(bpm)
+    y = build_str(x, bpm)
     print(y)
     filename = x[0].removesuffix('.wav') + '.pdf'
-    path = output_score(y, int(float(x[1])), x[0])
+    path = output_score(y, bpm, x[0])
     with open(path, "rb") as file:
         bucket.upload_object(filename, file)
     return y, filename, x
