@@ -4,8 +4,10 @@ import os
 from werkzeug.utils import secure_filename
 from flask import Flask, make_response, request, jsonify
 import uuid
+from audio_transcription.audio_transcript import AudioTranscripter
 
 db_user = UserRepo()
+
 app = Flask("app")
 if not os.path.exists('../uploads'):
     os.makedirs("../uploads")
@@ -61,12 +63,15 @@ def login():
     else:
         return {"response": "bad request"}, 400
 
-
+# {"username":"something"}
 @app.route("/api/upload", methods=["POST"])
 def upload_api():
     print(request.files)
     if "file" in request.files:
         saved_file = request.files["file"]
+        at = AudioTranscripter(str(saved_file))
+        musical_data = at.convert()
+        
         saved_file.save(os.path.join("../uploads", secure_filename(saved_file.filename)))
         return {"status": "success"}, 200
     return {"status": "bad request"}, 400
