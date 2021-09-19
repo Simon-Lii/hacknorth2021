@@ -31,6 +31,6 @@ class UserRepo:
         return self.db.delete_entry("username", username)
 
     # data = json object
-    def update_info(self, id, data):
+    def update_user(self, id, data):
         print('ran')
         return self.db.update(id, data)

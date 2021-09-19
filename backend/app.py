@@ -13,7 +13,19 @@ if not os.path.exists('../uploads'):
     os.makedirs("../uploads")
 
 def retrieve_id(token):
-    return authentication.verify_data(token)
+    string = authentication.verify_data(token)[1]
+    left = 0
+    right = 0
+    for c in range(len(string)):
+        if string[c] == "(":
+            left = c
+        elif string[c] == ")":
+            right = c
+            break
+    
+    id = string[left+2:right-1]
+    print(id)
+    return id
 
 
 @app.route("/api/delete_user/", methods=["POST"])
@@ -70,13 +82,18 @@ def login():
 # {"username":"something"}
 @app.route("/api/upload", methods=["POST"])
 def upload_api():
-    print(request.form)
+    token = request.cookies["token"]
+    id = retrieve_id(token)
+    print(id)
     if "file" in request.files:
         saved_file = request.files["file"]
         saved_file.save(os.path.join("audio_transcription/temp_song/", secure_filename(saved_file.filename)))
         data = music_trans.audio_to_score(saved_file.filename)
         pdf_filename = data[1]
         musical_data = data[2]
+        entry = db_user.read_user(id)
+        new_history_field = {"history": entry["history"] + [musical_data]}
+        db_user.update_user(id, new_history_field)
         return {"status": "success", "filename": bucket.generate_presigned_url(pdf_filename)}, 200
     return {"status": "bad request"}, 400
 
@@ -88,4 +105,4 @@ def sign_out():
     return resp
 
 
-print(db_user.update_info("614584114118c7e524b49493", {"dick": "cock"}))
+print(db_user.update_user("614584114118c7e524b49493", {"dick": "cock"}))
