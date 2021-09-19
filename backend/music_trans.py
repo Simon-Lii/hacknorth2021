@@ -1,9 +1,10 @@
 import abjad
 from audio_transcription.audio_transcript import AudioTranscripter
+import os
+import bucket
 
-at = AudioTranscripter('twinkle2.wav')
-x = at.convert()
-print(x)
+if not os.path.exists('../scores'):
+    os.makedirs("../scores")
 # string = "c'16 f' g' a' d' g' a' b' e' a' b' c'' f' b' c'' d''16"
 # voice_1 = abjad.Voice(string, name="Voice_1")
 # staff_1 = abjad.Staff([voice_1], name="Staff_1")
@@ -121,6 +122,7 @@ print(x)
 # abjad.show(piano_staff)
 
 import math
+
 # string = "c'16 f' g' a' d' g' a' b' e' a' b' c'' f' b' c'' d''16"
 # voice_1 = abjad.Voice(string, name="Voice_1")
 # staff_1 = abjad.Staff([voice_1], name="Staff_1")
@@ -142,7 +144,7 @@ import math
 # abjad.show(score)
 
 # save the pdf file to the outer directory
-# abjad.show(notes, output_directory=r"..", should_open=False)
+
 
 freq_chart = {'16.35': 'C0', '17.32': 'C#0', '18.35': 'D0', '19.45': 'D#0', '20.6': 'E0',
               '21.83': 'F0', '23.12': 'F#0', '24.5': 'G0', '25.96': 'G#0', '27.5': 'A0',
@@ -189,15 +191,15 @@ freq_chart = {'16.35': 'C0', '17.32': 'C#0', '18.35': 'D0', '19.45': 'D#0', '20.
 
 def build_str(ori_notes):
     tempo = float(ori_notes[1])
-    quarter = 1/(tempo/60)
-    range_of_notes = [quarter/4, quarter/2, quarter, quarter*2, quarter*4]
+    quarter = 1 / (tempo / 60)
+    range_of_notes = [quarter / 4, quarter / 2, quarter, quarter * 2, quarter * 4]
     notes = ori_notes[2]
     music_str = ""
     beat_num = 0
     for i in range(len(notes)):
         octave_str = ''
         note = notes[i][1][:-1].lower()
-        octave = int(notes[i][1][-1])
+        octave = int(notes[i][1][-1]) + 1
         time = float(notes[i][0])
         time_str = ''
         if i == len(notes) - 1:
@@ -211,14 +213,14 @@ def build_str(ori_notes):
             else:
                 time_str = '4'
         else:
-            next_note_time = float(notes[i+1][0])
+            next_note_time = float(notes[i + 1][0])
             duration = next_note_time - time
             duration_diff = abs(range_of_notes[0] - duration)
             time_str = '16'
             for j in range(1, len(range_of_notes)):
                 if abs(range_of_notes[j] - duration) < duration_diff:
                     duration_diff = abs(range_of_notes[j] - duration)
-                    note_length = 2**(abs(4-j))
+                    note_length = 2 ** (abs(4 - j))
                     time_str = str(note_length)
             beat_num += 4 / float(time_str)
         if '#' in note:
@@ -232,19 +234,42 @@ def build_str(ori_notes):
             octave_str += "'"
         note_str = note
         music_str += note_str + octave_str + time_str + " "
-    print(beat_num)
     return music_str[:-1]
 
 
-def output_score(music_str, tempo):
+def output_score(music_str, tempo, title):
+    title = title.removesuffix('.wav')
     staff = abjad.Staff(music_str)
-    score = abjad.Score([staff])
+    score = abjad.Score([staff], name=title)
     mark = abjad.MetronomeMark((1, 4), tempo)
     abjad.attach(mark, staff[0])
     barline = abjad.deprecated.add_final_bar_line(score)
-    abjad.show(score)
+    block = abjad.Block(name='header')
+    lilypond_file = abjad.LilyPondFile(items=[block, staff])
+    # notes title
+    lilypond_file.header_block.title = abjad.Markup(title)
+    # lilypond_file = abjad.LilyPondFile(staff)
+    # notes title
+    # lilypond_file.header_block.title = abjad.Markup(title)
+
+    # save pdf file at a custom location
+    # abjad.persist.as_pdf(lilypond_file, 'C:/Users/jz173/Documents/HTN/HackTheNorth2021/scores/file2.pdf')
+    # abjad.show(score)
+    abjad.persist.as_pdf(lilypond_file, f'../scores/{title}.pdf')
+    # print(abjad.show(lilypond_file, output_directory=r"../scores", should_open=False))
 
 
+def audio_to_score(filename):
+    at = AudioTranscripter(filename)
+    x = at.convert()
+    print(x)
+    y = build_str(x)
+    print(y)
+    output_score(y, int(float(x[1])), x[0])
+    return y, x[0].removesuffix('.wav') + '.pdf'
+
+
+print(audio_to_score('sans.wav'))
 
 # staff_1 = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 # clef_1 = abjad.Clef("treble")
