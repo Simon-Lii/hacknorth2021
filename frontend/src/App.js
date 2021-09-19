@@ -15,11 +15,6 @@ function App() {
   
   const [userHistory, setUserHistory] = useState({})
 
-  const getUserHistory = () => {
-    //TODO @SIMON ADD YOUR CODE HERE
-    // "user" = username basically or use cookeis
-  }
-
   const checkIfLoggedIn = () => {
     let loggedIn = false
 
