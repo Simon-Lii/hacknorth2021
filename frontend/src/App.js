@@ -11,7 +11,7 @@ import CreateUser from "./components/CreateUser"
 
 function App() {
 
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState("")
 
   const checkIfLoggedIn = () => {
     let loggedIn = false
@@ -32,10 +32,11 @@ function App() {
   }
 
   const requestLogin = (username, password) => {
-    let data = new FormData();
-    data.append('username', username);
-    data.append('password', password);
-    setUser(username);
+    let data = new FormData()
+    data.append('username', username)
+    data.append('password', password)
+    setUser(username)
+    console.log(user)
     return axios.post("http://localhost:3000/api/login/", data)
     .then(response => response.status)
     .catch(response => response.status)

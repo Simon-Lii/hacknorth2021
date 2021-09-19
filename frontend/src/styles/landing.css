@@ -1,10 +1,110 @@
-#landing-background{
-	background-color: teal;
+html, body {margin: 0; height: 100%; overflow: hidden}
+
+#landing{
 	min-height: 100vh;
-	min-width: 100vw;
+	min-width: 90vw;
 }
 
-.landing-bar{
-	position: fixed;
-	top:0px;	
+#landing-background{
+	min-height: 125vh;
+	min-width: 101vw;
+	background-color: rgb(24, 24, 24);
+	-webkit-transform: skewY(-10deg) translate(-1%,-25%);
+	-moz-transform: skewY(-10deg) translate(-1%,-25%);
+	-ms-transform: skewY(-10deg) translate(-1%,-25%);
+	-o-transform: skewY(-10deg) translate(-1%,-25%);
+	transform: skewY(-10deg) translate(-1%,-25%);
+}
+
+
+#landing-background{
+
+}
+
+
+.title{
+	color: whitesmoke;
+	top: 30%;
+	left: 5%;
+	z-index: 2;
+	position: absolute;
+}
+
+.motto{
+	color: rgb(209, 209, 209);
+	top: 45%;
+	left: 5%;
+	z-index: 2;
+	position: absolute;
+}
+
+#login-btn{
+	max-width: fit-content;
+	top: 55%;
+	left: 5%;
+	z-index: 2;
+	position: absolute;
+}
+
+#create-btn{
+	max-width: fit-content;
+	top: 55%;
+	left: 13%;
+	z-index: 2;
+	position: absolute;
+}
+
+#rick{
+	top: 0%;
+	left: 60%;
+	z-index: 1;
+	position: absolute;	
+	transform: scale(0.30) translate(-65%, -70%);
+}
+
+#rick-1{
+	top: 0%;
+	left: 60%;
+	z-index: 1;
+	position: absolute;	
+	transform: scale(0.30) translate(-10%, -60%) rotate(30deg);
+}
+
+#rick-2{
+	top: 0%;
+	left: 60%;
+	z-index: 1;
+	position: absolute;	
+	transform: scale(0.30) translate(-110%, -60%) rotate(-30deg);
+}
+
+#blocker{
+	background-color: rgb(24, 24, 24);
+	min-width: 35vw;
+	min-height: 18vh;
+	top: 58%;
+	left: 60%;
+	z-index: 1;
+	position: absolute;	
+	border-color: grey;
+}
+
+#blocker-1{
+	background-color: rgb(148, 148, 148);
+	min-width: 35vw;
+	min-height: 2px;
+	top: 53.1%;
+	left: 60%;
+	z-index: 1;
+	position: absolute;	
+	border-color: grey;
+}
+
+#bonto{
+	top: 74%;
+	left: 87%;
+	z-index: 1;
+	position: absolute;	
+	border-color: grey;	
+	transform: scale(0.15);
 }
