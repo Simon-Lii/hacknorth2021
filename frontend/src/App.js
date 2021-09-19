@@ -44,7 +44,7 @@ function App() {
     <Router>
       <div className="App">
         <Route path="/" exact component={Landing}/>
-        <Route path="/dashboard" exact render={(props) => checkIfLoggedIn() ? 
+        <Route path="/dashboard" exact render={(props) => !checkIfLoggedIn()  ? 
         <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
         <Route path="/login" render={(props) => checkIfLoggedIn() ? <Redirect to={{pathname: "/dashboard", state : {from: props.location}}}/> : <Login loginRequest={requestLogin}/> } />
         <Route path="/create_user" render={(props) => checkIfLoggedIn() ? <Redirect to={{pathname: "/dashboard", state : {from: props.location}}}/> : <CreateUser createUserRequest={requestCreateUser} /> } />

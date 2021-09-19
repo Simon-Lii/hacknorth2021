@@ -1,0 +1,15 @@
+.score{
+
+}
+.score-title{
+	float: left;
+}
+
+.score-link{
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.score-link :hover{
+	cursor: pointer;
+}
