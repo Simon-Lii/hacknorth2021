@@ -15,6 +15,7 @@ class AudioTranscripter:
         self.tempo = subprocess.getoutput(f'aubio tempo "{path_file}/temp_song/{str(filename)}"').split()[0]
         self.fastest_note = (float(self.tempo) / 60) / 16
         i = 0
+        print(aubio_pitch)
         while i < len(aubio_pitch):
             timestamp = "{:.2f}".format(float(aubio_pitch[i]))
             freq = float(aubio_pitch[i + 1])
@@ -35,7 +36,7 @@ class AudioTranscripter:
                     temp_beat.append(timestamp)
                     self.beat[timestamp] = 1
             i += 1
-    
+
     def convert(self):
         musical_score = []
         for timestamp in self.beat:
