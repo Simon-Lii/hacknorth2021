@@ -22,6 +22,12 @@ const CreateUser = ({ createUserRequest }) => {
     <div id="createUser">
       <div id="background"></div>
       <div className="card login-box">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          id="createUserError"
+          hidden
+        ></div>
         <form onSubmit={handleCreateUser}>
           <div class="mb-2">
             <label for="username" class="form-label">
@@ -35,17 +41,11 @@ const CreateUser = ({ createUserRequest }) => {
             </label>
             <input type="password" class="form-control" id="password" />
           </div>
-          <button type="submit" class="btn btn-outline-warning">
+          <button type="submit" class="btn btn-outline-success">
             Create user
           </button>
         </form>
-
-        <div
-          class="alert alert-danger"
-          role="alert"
-          id="createUserError"
-          hidden
-        ></div>
+				<a className="card-link" href="/login">Login to an account</a>
       </div>
     </div>
   );
