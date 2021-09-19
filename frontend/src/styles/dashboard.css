@@ -7,7 +7,6 @@
 #main-content{
 	flex: 1 1 auto;
 	display: flex;
-	background-image: url("../img/studio.jpg");
 	background-size: 88%;
 	background-repeat: no-repeat;
 }
@@ -65,4 +64,8 @@ hr{
 
 #hr1{
 	margin-right: 530px
+}
+
+.titler {
+	color: whitesmoke;
 }

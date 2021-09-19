@@ -48,7 +48,7 @@ const Dashboard = ({user}) => {
 		<div id="dashboard-container" >
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
 				<div class="container-fluid">
-					<a class="navbar-brand " href="#"> &#127932; Score.me</a>
+					<h4 class="display-5 titler"> &#127932; Score.me</h4>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					</button>
@@ -64,7 +64,6 @@ const Dashboard = ({user}) => {
 					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 				</div>
 					<div id="history-container">
-						<hr id="hr1"></hr>
 						<div id="background-dash">
 						<Scores scores={scores} style={{backgroundColor:"blue"}}/>
 					</div></div>
