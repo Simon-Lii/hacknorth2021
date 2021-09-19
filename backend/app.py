@@ -71,6 +71,8 @@ def upload_api():
         saved_file.save(os.path.join("audio_transcription/temp_song/", secure_filename(saved_file.filename)))
         data = music_trans.audio_to_score(saved_file.filename)
         pdf_filename = data[1]
+        musical_data = data[2]
+        db_user
         return {"status": "success", "filename": bucket.generate_presigned_url(pdf_filename)}, 200
     return {"status": "bad request"}, 400
 
