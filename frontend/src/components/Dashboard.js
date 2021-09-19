@@ -5,7 +5,7 @@ import "../styles/dashboard.css"
 import Score from './Score'
 
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
 	const [fileUploaded, setFileUploaded] = useState(0);
 	const [file, setFile] = useState(0);
 
@@ -14,6 +14,7 @@ const Dashboard = () => {
 		console.log(file)
 		const data = new FormData();
 		data.append('file', file);
+		data.append('username', user)
 		axios.post('http://localhost:3000/api/upload', data)
 		.then((result) => console.log(result))
 		.catch((result) => console.log(result))

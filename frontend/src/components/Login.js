@@ -25,18 +25,18 @@ const Login = ({loginRequest}) => {
 			<div id="background">
 			</div>
 			<div className="card login-box">
-				<div class="alert alert-danger" role="alert" id="login-error" hidden>
+				<div className="alert alert-danger" role="alert" id="login-error" hidden>
 				</div>
 				<form onSubmit={handleLogin}>
-					<div class="mb-2">
-						<label for="username" class="form-label">Username</label>
-						<input type="username" class="form-control" id="username" />
+					<div className="mb-2">
+						<label for="username" className="form-label">Username</label>
+						<input type="username" className="form-control" id="username" />
 					</div>
-					<div class="mb-3">
-						<label for="password" class="form-label">Password</label>
-						<input type="password" class="form-control" id="password" />
+					<div className="mb-3">
+						<label for="password" className="form-label">Password</label>
+						<input type="password" className="form-control" id="password" />
 					</div>
-					<button type="submit" class="btn btn-outline-warning">Login</button>
+					<button type="submit" className="btn btn-outline-warning">Login</button>
 				</form>
 				<a className="card-link" href="/create_user">Create an account</a>
 			</div>
