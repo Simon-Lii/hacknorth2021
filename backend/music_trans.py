@@ -59,7 +59,7 @@ def build_str(ori_notes):
     for i in range(len(notes)):
         octave_str = ''
         note = notes[i][1][:-1].lower()
-        octave = int(notes[i][1][-1]) + 1
+        octave = int(notes[i][1][-1])
         time = float(notes[i][0])
         time_str = ''
         if i == len(notes) - 1:
