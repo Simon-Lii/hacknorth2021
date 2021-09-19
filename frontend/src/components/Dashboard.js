@@ -15,7 +15,7 @@ const Dashboard = () => {
 		const data = new FormData();
 		data.append('file', file);
 		axios.post('http://localhost:3000/api/upload', data)
-		.then((result) => console.log(result))
+		.then((result) => window.location.replace(result.data.filename))
 		.catch((result) => console.log(result))
 		setFileUploaded(0);
 	}
@@ -31,7 +31,7 @@ const Dashboard = () => {
 		<div id="dashboard-container" >
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#">Score.me</a>
+					<a class="navbar-brand " href="#">Score.me</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					</button>
@@ -46,7 +46,7 @@ const Dashboard = () => {
 					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 				</div>
 				<div id="history-container">
-					<h3 className="display-4 my-scores-title"> My Scores </h3>
+					<h3 className="display-4 my-scores-title"> &#127925; My Scores </h3>
 					<hr></hr>
 					<Score score={{title: "mii_song_very_simple.mp3", url:"score.me/api/download/ae5Uys9p"}}/>
 					<Score score={{title: "flight_of_bumblebee.wav", url:"score.me/api/download/kqos012nN"}}/>

@@ -69,9 +69,9 @@ def upload_api():
     if "file" in request.files:
         saved_file = request.files["file"]
         saved_file.save(os.path.join("audio_transcription/temp_song/", secure_filename(saved_file.filename)))
-        random_var, filename, data = music_trans.audio_to_score(saved_file.filename)
-        # db_user.update_info(request["username"], {"history":data})
-        return {"status": "success", "filename": bucket.generate_presigned_url(filename)}, 200
+        data = music_trans.audio_to_score(saved_file.filename)
+        pdf_filename = data[1]
+        return {"status": "success", "filename": bucket.generate_presigned_url(pdf_filename)}, 200
     return {"status": "bad request"}, 400
 
 

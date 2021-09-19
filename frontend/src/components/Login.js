@@ -7,12 +7,17 @@ const Login = ({loginRequest}) => {
 	
 	const handleLogin = (event) => {
 		event.preventDefault()
-		const result = loginRequest(event.target[0].value, event.target[1].value)
-			if(result.status != "success"){
-			const loginErrorMsgBox = document.getElementById("login-error")
-			loginErrorMsgBox.textContent = "Username and Password not detected. Please try again or make a new account"
-			loginErrorMsgBox.removeAttribute("hidden")
-		}
+		loginRequest(event.target[0].value, event.target[1].value).then((result) => {
+			console.log(result)
+			if(result !== 200){
+				const loginErrorMsgBox = document.getElementById("login-error")
+				loginErrorMsgBox.textContent = "Username and Password not detected. Please try again or make a new account"
+				loginErrorMsgBox.removeAttribute("hidden")
+			}
+			else{
+				window.location.href = "dashboard"
+			}
+		})
 	}
 
 	return (
@@ -33,6 +38,7 @@ const Login = ({loginRequest}) => {
 					</div>
 					<button type="submit" class="btn btn-outline-warning">Login</button>
 				</form>
+				<a className="card-link" href="/create_user">Create an account</a>
 			</div>
 		</div>
 	)
