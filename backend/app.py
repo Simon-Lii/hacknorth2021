@@ -73,4 +73,11 @@ def upload_api():
     return {"status": "bad request"}, 400
 
 
+@app.route("/api/sign_out", methods=["GET"])
+def sign_out():
+    resp = make_response()
+    resp.set_cookie("token", "", expires=0)
+    return resp
+
+
 print(db_user.update_info("614584114118c7e524b49493", {"dick": "cock"}))
