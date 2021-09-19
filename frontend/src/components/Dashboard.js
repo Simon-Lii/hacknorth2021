@@ -40,13 +40,16 @@ const Dashboard = () => {
 			</nav>
 			<div id="main-content">
 				<div id="upload-container" className="card">
+					<h3 className="display-6 upload-title"> Upload </h3>
+					<div className="alert alert-warning"> To get your music score, upload your .wav file by clicking upload and after
+					you finish uploading, press "Get my score".</div>
 					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 				</div>
 				<div id="history-container">
-					<h3 className="display-4 upload-title"> Uploads </h3>
+					<h3 className="display-4 my-scores-title"> My Scores </h3>
 					<hr></hr>
-					<Score score={{title: "deez", url:"google.ca"}}/>
-					<Score score={{title: "deez", url:"google.ca"}}/>
+					<Score score={{title: "mii_song_very_simple.mp3", url:"score.me/api/download/ae5Uys9p"}}/>
+					<Score score={{title: "flight_of_bumblebee.wav", url:"score.me/api/download/kqos012nN"}}/>
 				</div>
 			</div>
 		</div>
