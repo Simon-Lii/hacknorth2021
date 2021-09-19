@@ -3,3 +3,8 @@
 	min-height: 100vh;
 	min-width: 100vw;
 }
+
+.landing-bar{
+	position: fixed;
+	top:0px;	
+}
