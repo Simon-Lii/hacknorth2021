@@ -1,4 +1,4 @@
-from . import authentication
+from . import authentication, bucket, music_trans
 from .user_repo import UserRepo
 import os
 from werkzeug.utils import secure_filename
@@ -67,8 +67,9 @@ def upload_api():
     print(request.files)
     if "file" in request.files:
         saved_file = request.files["file"]
-        saved_file.save(os.path.join("../uploads", secure_filename(saved_file.filename)))
-        return {"status": "success"}, 200
+        saved_file.save(os.path.join("audio_transcription/temp_song/", secure_filename(saved_file.filename)))
+        music_trans.audio_to_score(saved_file.filename)
+        return {"status": "success", "filename": bucket.generate_presigned_url(saved_file.filename)}, 200
     return {"status": "bad request"}, 400
 
 

@@ -14,7 +14,7 @@ function App() {
   const [user, setUser] = useState([])
 
   const checkIfLoggedIn = () => {
-    let loggedIn = false
+    let loggedIn = true
 
     //Add login Logic
 
