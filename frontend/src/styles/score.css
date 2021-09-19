@@ -1,20 +1,20 @@
 .score{
 	margin: 10px;
-	max-width: 13vh;
+	max-width: 15vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-overflow: ellipsis;
-	word-wrap: break-word;
+	word-wrap: normal;
 }
 .score-title{
-	float: left;
+	float: center;
 }
 
 .score-link{
 	vertical-align: middle;
 	text-decoration: none;
-	float: right;
+	float: center;
 }
 
 .score-link :hover{

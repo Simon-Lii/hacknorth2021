@@ -27,14 +27,14 @@ const Dashboard = ({user}) => {
 		data.append('username', user)
 		console.log(user)
 		axios.post('http://localhost:3000/api/upload', data)
-		.then((result) => window.location.replace(result.data.filename))
+		.then((result) => {window.location.replace(result.data.filename); window.location.reload()})
 		.catch((result) => console.log(result))
 		setFileUploaded(0);
 	}
 
 	const signOut = () => {
 		axios.get('http://localhost:3000/api/sign_out').then().catch()
-		window.location.href = "../login"
+		window.location.href = "../"
 	}
 
 	const getScoreHistory = async () => {
