@@ -34,6 +34,7 @@ hr{
 	justify-content: center;
 	align-items: center;
 	background-color: rgb(42, 42, 42);
+	border-radius: 0%;
 }
 
 #upload-container form{

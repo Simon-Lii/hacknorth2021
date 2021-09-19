@@ -11,11 +11,11 @@ const SubmitForm = ({handleSubmit, setFile, file}) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
-				<div type="button" className="fileUpload btn btn-outline-primary">
+				<div type="button" className="fileUpload btn btn-outline-info">
 					<span>Upload</span>
 					<input type="file" name="file" onChange={changeHandler} className="upload" />
 				</div>
-				<input className="btn btn-rounded btn-outline-primary" type="submit" value="Get my Score" />
+				<input className="btn btn-rounded btn-outline-success" type="submit" value="Get my Score" />
 			</form>
 			<p id="uploaded-file-name"></p>
 		</>
