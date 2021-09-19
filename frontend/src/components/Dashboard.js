@@ -10,10 +10,10 @@ const Dashboard = ({user}) => {
 	const [file, setFile] = useState(0);
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		console.log(file)
-		const data = new FormData();
-		data.append('file', file);
+		const data = new FormData()
+		data.append('file', file)
 		data.append('username', user)
 		axios.post('http://localhost:3000/api/upload', data)
 		.then((result) => window.location.replace(result.data.filename))
@@ -21,10 +21,9 @@ const Dashboard = ({user}) => {
 		setFileUploaded(0);
 	}
 
-	const signOut = async (e) => {
-		e.preventDefault();
-		const data = new FormData();
-		//TODO finish once api is done
+	const signOut = () => {
+		axios.get('http://localhost:3000/api/sign_out').then().catch()
+		window.location.href = "../login"
 	}
 	
 
@@ -36,7 +35,7 @@ const Dashboard = ({user}) => {
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					</button>
-					<button class="btn btn-outline-primary">Sign Out</button>
+					<button class="btn btn-outline-primary" onClick={signOut}>Sign Out</button>
 				</div>
 			</nav>
 			<div id="main-content">
