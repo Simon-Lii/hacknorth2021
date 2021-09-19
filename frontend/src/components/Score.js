@@ -6,7 +6,7 @@ const Score = ({score}) => {
 		<div className="card score">
 			<div className="card-body">
 				<h3 className=" score-title">{score.title}</h3>
-				<a className="score-link lead" href={score.url}>Ligma</a>
+				<a className="score-link lead" href={score.url}>{score.url}</a>
 			</div>
 		</div>
 	)
