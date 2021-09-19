@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import SubmitForm from './SubmitForm'
 import "../styles/dashboard.css"
+import Score from './Score'
 
 
 const Dashboard = () => {
@@ -37,8 +38,16 @@ const Dashboard = () => {
 					<button class="btn btn-outline-primary">Sign Out</button>
 				</div>
 			</nav>
-			<div id="upload-container" className="card">
-				<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
+			<div id="main-content">
+				<div id="upload-container" className="card">
+					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
+				</div>
+				<div id="history-container">
+					<h3 className="display-4 upload-title"> Uploads </h3>
+					<hr></hr>
+					<Score score={{title: "deez", url:"google.ca"}}/>
+					<Score score={{title: "deez", url:"google.ca"}}/>
+				</div>
 			</div>
 		</div>
 	)
