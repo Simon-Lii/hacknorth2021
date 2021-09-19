@@ -15,7 +15,7 @@ const Dashboard = () => {
 		const data = new FormData();
 		data.append('file', file);
 		axios.post('http://localhost:3000/api/upload', data)
-		.then((result) => console.log(result))
+		.then((result) => window.location.replace(result.data.filename))
 		.catch((result) => console.log(result))
 		setFileUploaded(0);
 	}
