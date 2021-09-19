@@ -7,10 +7,9 @@ class UserRepo:
 
     def authenticate(self, username, password):
         entry = self.db.get_entry("username", username)
-        print(entry)
         if entry != None:
             if entry["username"] == username and entry["password"] == password:
-                return entry
+                return entry["_id"]
         return False
 
     def read_user(self, id):

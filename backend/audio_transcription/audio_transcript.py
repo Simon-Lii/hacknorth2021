@@ -6,13 +6,13 @@ import os
 class AudioTranscripter:
     def __init__(self, filename):
         path_file = os.path.dirname(os.path.realpath(__file__))
-        aubio_pitch = subprocess.getoutput(f"aubio pitch {path_file}/temp_song/" + str(filename)).split()
-        aubio_beat = subprocess.getoutput(f"aubio onset {path_file}/temp_song/" + str(filename)).split()
+        aubio_pitch = subprocess.getoutput(f'aubio pitch "{path_file}/temp_song/{str(filename)}"').split()
+        aubio_beat = subprocess.getoutput(f'aubio onset "{path_file}/temp_song/{str(filename)}"').split()
         print(aubio_beat)
         self.filename = filename
         self.pitch = {}
         self.beat = {}
-        self.tempo = subprocess.getoutput(f"aubio tempo {path_file}/temp_song/" + str(filename)).split()[0]
+        self.tempo = subprocess.getoutput(f'aubio tempo "{path_file}/temp_song/{str(filename)}"').split()[0]
         self.fastest_note = (float(self.tempo) / 60) / 16
         i = 0
         while i < len(aubio_pitch):

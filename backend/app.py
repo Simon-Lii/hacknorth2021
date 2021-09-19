@@ -22,7 +22,7 @@ def retrieve_id(token):
         elif string[c] == ")":
             right = c
             break
-    
+
     id = string[left+2:right-1]
     return id
 
@@ -70,6 +70,7 @@ def login():
         auth_val = db_user.authenticate(username, password)
         if auth_val:
             token_val = authentication.get_token(auth_val)
+            print(token_val)
             response = make_response(jsonify({"status": "success"}))
             response.set_cookie("token", token_val, httponly=True)
             return response
@@ -117,6 +118,3 @@ def get_history():
         temp_resp = {"title":h[0] , "url" : bucket.generate_presigned_url(pdf_filename)}
         resp.append(temp_resp)
     return {"body":resp}, 200
-
-
-print(db_user.update_user("614584114118c7e524b49493", {"dick": "cock"}))
