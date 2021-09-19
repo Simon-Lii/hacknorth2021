@@ -82,7 +82,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 	background-color: rgb(24, 24, 24);
 	min-width: 35vw;
 	min-height: 18vh;
-	top: 50vh;
+	top: 45vh;
 	left: 60vw;
 	z-index: 1;
 	position: absolute;	
@@ -93,7 +93,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 	background-color: rgb(148, 148, 148);
 	min-width: 29vw;
 	min-height: 2px;
-	top: 45vh;
+	top: 43vh;
 	left: 60vw;
 	z-index: 1;
 	position: absolute;	

@@ -29,7 +29,7 @@
 	width: 1000px;
 	height: 4000px;
 	border-radius: 25px;
-	border: 4px solid purple;
+	border: 4px solid grey;
 }
 
 .grow { 
@@ -42,7 +42,6 @@ transform: scale(1.2);
 
 #title1 {
 	padding-bottom: 10px;
-	color: blue;
+	color: black;
 	font-size: 28px;
-	font-family: URW Chancery L, cursive;
 }

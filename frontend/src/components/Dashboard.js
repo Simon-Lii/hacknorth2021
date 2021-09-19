@@ -48,11 +48,11 @@ const Dashboard = ({user}) => {
 		<div id="dashboard-container" >
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
 				<div class="container-fluid">
-					<h4 class="display-5 titler"> &#127932; Score.me</h4>
+					<h4 class="display-5 titler"> Score.me</h4>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					</button>
-					<h3 id="header1"className="display-4 my-scores-title"> &#127925; My Scores </h3>
+					<h3 id="header1"className="display-4 my-scores-title"> My Scores </h3>
 					<button class="btn btn-outline-info" onClick={signOut}>Sign Out</button>
 				</div>
 			</nav>
@@ -65,7 +65,7 @@ const Dashboard = ({user}) => {
 				</div>
 					<div id="history-container">
 						<div id="background-dash">
-						<Scores scores={scores} style={{backgroundColor:"blue"}}/>
+						 <Scores scores={scores} style={{backgroundColor:"blue"}}/>
 					</div></div>
 					<div id="upload-container" className="card">
 					<h3 id = "upload1" className="display-6 upload-title"> Upload </h3>
