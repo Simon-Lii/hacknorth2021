@@ -24,7 +24,6 @@ def retrieve_id(token):
             break
     
     id = string[left+2:right-1]
-    print(id)
     return id
 
 
@@ -84,7 +83,6 @@ def login():
 def upload_api():
     token = request.cookies["token"]
     id = retrieve_id(token)
-    print(id)
     if "file" in request.files:
         saved_file = request.files["file"]
         saved_file.save(os.path.join("audio_transcription/temp_song/", secure_filename(saved_file.filename)))
@@ -103,6 +101,22 @@ def sign_out():
     resp = make_response()
     resp.set_cookie("token", "", expires=0)
     return resp
+
+@app.route("/api/history", methods=["GET"])
+def get_history():
+    resp = make_response()
+    token = request.cookies["token"]
+    id = retrieve_id(token)
+    entry = db_user.read_user(id)
+    history = entry["history"]
+    resp = []
+    for h in history:
+        data = music_trans.get_score_from_musical_data(h)
+        pdf_filename = data[1]
+        musical_data = data[2]
+        temp_resp = {"title":h[0] , "url" : bucket.generate_presigned_url(pdf_filename)}
+        resp.append(temp_resp)
+    return {"body":resp}, 200
 
 
 print(db_user.update_user("614584114118c7e524b49493", {"dick": "cock"}))
