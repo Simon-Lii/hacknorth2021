@@ -8,6 +8,7 @@ class AudioTranscripter:
         path_file = os.path.dirname(os.path.realpath(__file__))
         aubio_pitch = subprocess.getoutput(f"aubio pitch {path_file}/temp_song/" + str(filename)).split()
         aubio_beat = subprocess.getoutput(f"aubio onset {path_file}/temp_song/" + str(filename)).split()
+        print(aubio_beat)
         self.filename = filename
         self.pitch = {}
         self.beat = {}
