@@ -43,6 +43,8 @@ const Dashboard = () => {
 					<SubmitForm handleSubmit={handleSubmit} setFile={setFile} file={file}/>
 				</div>
 				<div id="history-container">
+					<h3 className="display-4 upload-title"> Uploads </h3>
+					<hr></hr>
 					<Score score={{title: "deez", url:"google.ca"}}/>
 					<Score score={{title: "deez", url:"google.ca"}}/>
 				</div>
