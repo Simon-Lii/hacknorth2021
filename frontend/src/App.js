@@ -25,6 +25,7 @@ function App() {
     let data = new FormData();
     data.append('username', username);
     data.append('password', password);
+    setUser(username);
     return axios.post("http://localhost:3000/api/create_user/", data)
     .then(response => response.status)
     .catch(response => response.status)
@@ -34,6 +35,7 @@ function App() {
     let data = new FormData();
     data.append('username', username);
     data.append('password', password);
+    setUser(username);
     return axios.post("http://localhost:3000/api/login/", data)
     .then(response => response.status)
     .catch(response => response.status)
@@ -45,7 +47,7 @@ function App() {
       <div className="App">
         <Route path="/" exact component={Landing}/>
         <Route path="/dashboard" exact render={(props) => !checkIfLoggedIn()  ? 
-        <Dashboard/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
+        <Dashboard user={user}/> : <Redirect to={{pathname: "/login", state : {from: props.location}}}/>} />
         <Route path="/login" render={(props) => checkIfLoggedIn() ? <Redirect to={{pathname: "/dashboard", state : {from: props.location}}}/> : <Login loginRequest={requestLogin}/> } />
         <Route path="/create_user" render={(props) => checkIfLoggedIn() ? <Redirect to={{pathname: "/dashboard", state : {from: props.location}}}/> : <CreateUser createUserRequest={requestCreateUser} /> } />
       </div>
