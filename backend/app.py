@@ -10,6 +10,10 @@ app = Flask("app")
 if not os.path.exists('../uploads'):
     os.makedirs("../uploads")
 
+def retrieve_id(token):
+    return authentication.verify_data(token)
+
+
 @app.route("/api/delete_user/", methods=["POST"])
 def delete_user():
     if "username" in request.form and "password" in request.form:
