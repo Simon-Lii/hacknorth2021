@@ -1,7 +1,7 @@
 import abjad
 from audio_transcription.audio_transcript import AudioTranscripter
 import os
-
+import bucket
 
 if not os.path.exists('../scores'):
     os.makedirs("../scores")
@@ -199,7 +199,7 @@ def build_str(ori_notes):
     for i in range(len(notes)):
         octave_str = ''
         note = notes[i][1][:-1].lower()
-        octave = int(notes[i][1][-1])
+        octave = int(notes[i][1][-1]) + 1
         time = float(notes[i][0])
         time_str = ''
         if i == len(notes) - 1:
@@ -262,12 +262,14 @@ def output_score(music_str, tempo, title):
 def audio_to_score(filename):
     at = AudioTranscripter(filename)
     x = at.convert()
+    print(x)
     y = build_str(x)
+    print(y)
     output_score(y, int(float(x[1])), x[0])
     return y, x[0].removesuffix('.wav') + '.pdf'
 
 
-print(audio_to_score('twinkle2.wav'))
+print(audio_to_score('sans.wav'))
 
 # staff_1 = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 # clef_1 = abjad.Clef("treble")
