@@ -4,7 +4,6 @@ import os
 from werkzeug.utils import secure_filename
 from flask import Flask, make_response, request, jsonify
 import uuid
-from audio_transcription.audio_transcript import AudioTranscripter
 
 db_user = UserRepo()
 
@@ -70,8 +69,9 @@ def upload_api():
     if "file" in request.files:
         saved_file = request.files["file"]
         saved_file.save(os.path.join("audio_transcription/temp_song/", secure_filename(saved_file.filename)))
-        music_trans.audio_to_score(saved_file.filename)
-        return {"status": "success", "filename": bucket.generate_presigned_url(saved_file.filename)}, 200
+        random_var, filename, data = music_trans.audio_to_score(saved_file.filename)
+        # db_user.update_info(request["username"], {"history":data})
+        return {"status": "success", "filename": bucket.generate_presigned_url(filename)}, 200
     return {"status": "bad request"}, 400
 
 

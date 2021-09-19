@@ -8,3 +8,4 @@ numpy
 aubio
 pyjwt
 boto3
+abjad

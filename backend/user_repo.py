@@ -25,7 +25,7 @@ class UserRepo:
     # data = json object
     # default values: {"username":"yourstring", "password":"yourstring"}
     def create_user(self, username, password):
-        return self.db.create({"username": username, "password": password})
+        return self.db.create({"username": username, "password": password, "history":[]})
 
     def delete_user(self, username):
         return self.db.delete_entry("username", username)
