@@ -10,3 +10,6 @@ virtualenv venv -p python3.8
 source venv/bin/activate
 
 2) pip install -r requirements.txt
+
+3) cd backend
+``` python app.py```
